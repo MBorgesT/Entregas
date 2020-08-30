@@ -1,6 +1,7 @@
 package printers;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -17,12 +18,12 @@ import org.json.JSONObject;
 
 public class Printer {
 
-    private static String baseFolder = System.getProperty("user.home") + "/printer_scripts/";
+    private static String baseFolder = System.getProperty("user.home") + "/printer-scripts/";
 
-    //private static String printCommand = "python3 " + baseFolder + "print_entrega.py";
-    //private static String jsonFile = baseFolder + "entrega.json";
+    private static String printCommand = "python3 " + baseFolder;
+    private static String jsonFile = baseFolder + "entrega.json";
     
-    private static String configFile = baseFolder + "config.txt";
+    //private static String configFile = baseFolder + "config.txt";
 
     public static void printComprovante(Entrega entrega, Cliente cliente) {
         try {
@@ -48,6 +49,19 @@ public class Printer {
             json.put("cidade", entrega.getCidade());
             json.put("referencia", referencia);
             
+            FileWriter file = new FileWriter(jsonFile);
+            file.write(json.toString());
+            file.flush();
+            file.close();
+          
+            Runtime.getRuntime().exec(printCommand + "entrega_cliente.py");
+            
+            JOptionPane.showMessageDialog(null, "Confirme para imprimir a nota da padaria", "Notinha", JOptionPane.INFORMATION_MESSAGE);
+            
+            Runtime.getRuntime().exec(printCommand + "entrega_padaria.py");
+                
+            /*
+            
             File file = new File(configFile);
             Scanner sc = new Scanner(file);
             String ip = sc.nextLine();
@@ -67,6 +81,8 @@ public class Printer {
             request.addHeader("content-type", "application/json");
             request.setEntity(params);
             httpClient.execute(request);
+
+            */
         } catch (JSONException ex) {
             Logger.getLogger(Printer.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Houve algum erro ao criar o arquivo JSON", "Error", JOptionPane.WARNING_MESSAGE);
