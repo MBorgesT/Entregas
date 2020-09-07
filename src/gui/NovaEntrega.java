@@ -69,6 +69,26 @@ public class NovaEntrega extends javax.swing.JFrame {
                 }
             }
         });
+        
+        
+        dinheiroRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (dinheiroRadioButton.isSelected()){
+                    campoTroco.setEnabled(true);
+                }
+            }
+        });
+        
+        cartaoRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (cartaoRadioButton.isSelected()){
+                    campoTroco.setEnabled(false);
+                    campoTroco.setText("");
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -76,6 +96,7 @@ public class NovaEntrega extends javax.swing.JFrame {
     private void initComponents() {
 
         enderecoButtonGroup = new javax.swing.ButtonGroup();
+        metodoPagamentoRadioGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         entregaPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -107,6 +128,12 @@ public class NovaEntrega extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel19 = new javax.swing.JLabel();
+        dinheiroRadioButton = new javax.swing.JRadioButton();
+        cartaoRadioButton = new javax.swing.JRadioButton();
+        campoTroco = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         botaoConfirmar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
@@ -135,7 +162,7 @@ public class NovaEntrega extends javax.swing.JFrame {
         campoValor.setName("valor"); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
-        jLabel4.setText("Observação:");
+        jLabel4.setText("Método de Pagamento:");
 
         campoObservacao.setColumns(20);
         campoObservacao.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
@@ -221,6 +248,30 @@ public class NovaEntrega extends javax.swing.JFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jLabel19.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        jLabel19.setText("Observação:");
+
+        metodoPagamentoRadioGroup.add(dinheiroRadioButton);
+        dinheiroRadioButton.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        dinheiroRadioButton.setText("Dinheiro");
+        dinheiroRadioButton.setName("dinheiro"); // NOI18N
+
+        metodoPagamentoRadioGroup.add(cartaoRadioButton);
+        cartaoRadioButton.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        cartaoRadioButton.setText("Cartão");
+        cartaoRadioButton.setName("cartao"); // NOI18N
+
+        campoTroco.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        campoTroco.setEnabled(false);
+        campoTroco.setName("troco"); // NOI18N
+
+        jLabel20.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        jLabel20.setText("Troco (vazio se não precisar):");
+
+        jLabel21.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 47, 52));
+        jLabel21.setText("*");
+
         javax.swing.GroupLayout entregaPanelLayout = new javax.swing.GroupLayout(entregaPanel);
         entregaPanel.setLayout(entregaPanelLayout);
         entregaPanelLayout.setHorizontalGroup(
@@ -228,14 +279,12 @@ public class NovaEntrega extends javax.swing.JFrame {
             .addGroup(entregaPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(campoCliente, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(entregaPanelLayout.createSequentialGroup()
                             .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2)
-                                .addComponent(jLabel4)
                                 .addGroup(entregaPanelLayout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -243,11 +292,24 @@ public class NovaEntrega extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel7)
-                                .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, entregaPanelLayout.createSequentialGroup()
+                            .addComponent(dinheiroRadioButton)
+                            .addGap(18, 18, 18)
+                            .addComponent(cartaoRadioButton))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, entregaPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel21)))
+                    .addComponent(campoTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel19))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoCidade)
                     .addComponent(campoLogradouro)
                     .addGroup(entregaPanelLayout.createSequentialGroup()
                         .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,30 +317,24 @@ public class NovaEntrega extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel17))
-                            .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(entregaPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16)))
-                        .addGap(18, 18, 18)
+                                .addComponent(jLabel16))
+                            .addComponent(campoBairro)))
+                    .addGroup(entregaPanelLayout.createSequentialGroup()
                         .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(entregaPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel18)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(campoCidade)))
-                    .addComponent(campoReferencia, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(entregaPanelLayout.createSequentialGroup()
-                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel18))
                             .addGroup(entregaPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15))
-                            .addComponent(jLabel11)
                             .addGroup(entregaPanelLayout.createSequentialGroup()
                                 .addComponent(simRadioButton)
                                 .addGap(18, 18, 18)
@@ -286,72 +342,92 @@ public class NovaEntrega extends javax.swing.JFrame {
                             .addGroup(entregaPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)))
-                        .addGap(0, 63, Short.MAX_VALUE)))
+                                .addComponent(jLabel14))
+                            .addComponent(jLabel11))
+                        .addGap(0, 63, Short.MAX_VALUE))
+                    .addComponent(campoReferencia))
                 .addContainerGap())
         );
         entregaPanelLayout.setVerticalGroup(
             entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(entregaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(entregaPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2)
                     .addGroup(entregaPanelLayout.createSequentialGroup()
-                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(simRadioButton)
-                            .addComponent(naoRadioButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(entregaPanelLayout.createSequentialGroup()
                                 .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel17))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel14))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(entregaPanelLayout.createSequentialGroup()
                                 .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel16))
+                                    .addComponent(simRadioButton)
+                                    .addComponent(naoRadioButton))
+                                .addGap(30, 30, 30)
+                                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel15))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(entregaPanelLayout.createSequentialGroup()
+                                .addComponent(campoLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(entregaPanelLayout.createSequentialGroup()
+                                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel17))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(entregaPanelLayout.createSequentialGroup()
+                                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel16))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel18))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(campoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(entregaPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel21))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(dinheiroRadioButton)
+                                    .addComponent(cartaoRadioButton))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoTroco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(entregaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(entregaPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(entregaPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jLabel6.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
@@ -388,7 +464,7 @@ public class NovaEntrega extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6))
                     .addComponent(entregaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(botaoCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoConfirmar)))
@@ -405,8 +481,8 @@ public class NovaEntrega extends javax.swing.JFrame {
                 .addComponent(entregaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoConfirmar)
-                    .addComponent(botaoCancelar))
+                    .addComponent(botaoCancelar)
+                    .addComponent(botaoConfirmar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -427,11 +503,19 @@ public class NovaEntrega extends javax.swing.JFrame {
         if (reply == 0 && new EntregaFormValidation(entregaPanel).validate()) {
             String strValor = campoValor.getText();
             strValor = strValor.replaceAll(",", ".");
+            
+            String strTroco = campoTroco.getText();
+            strTroco = strTroco.replaceAll(",", ".");
+            
             float valor = Float.parseFloat(strValor);
+            float troco = strTroco.isEmpty() ? null : Float.parseFloat(strValor);
+            
             Entrega entrega = new Entrega(
                     cliente.getIdCliente(),
                     this.now,
                     valor,
+                    dinheiroRadioButton.isSelected() ? 0 : 1,
+                    troco,
                     campoObservacao.getText().toUpperCase(),
                     campoLogradouro.getText().toUpperCase(),
                     Integer.parseInt(campoNumero.getText()),
@@ -462,7 +546,10 @@ public class NovaEntrega extends javax.swing.JFrame {
     private javax.swing.JTextField campoNumero;
     private javax.swing.JTextArea campoObservacao;
     private javax.swing.JTextField campoReferencia;
+    private javax.swing.JTextField campoTroco;
     private javax.swing.JTextField campoValor;
+    private javax.swing.JRadioButton cartaoRadioButton;
+    private javax.swing.JRadioButton dinheiroRadioButton;
     private javax.swing.ButtonGroup enderecoButtonGroup;
     private javax.swing.JPanel entregaPanel;
     private javax.swing.JLabel jLabel1;
@@ -475,7 +562,10 @@ public class NovaEntrega extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -485,6 +575,7 @@ public class NovaEntrega extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.ButtonGroup metodoPagamentoRadioGroup;
     private javax.swing.JRadioButton naoRadioButton;
     private javax.swing.JRadioButton simRadioButton;
     // End of variables declaration//GEN-END:variables

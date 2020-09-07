@@ -9,15 +9,19 @@ public class Entrega {
     private int idEntrega, idCliente;
     private Calendar data;
     private float valor;
+    private int metodoPagamento; // 0 - dinheiro; 1 - cartão
+    private float troco;
     private String observacao, logradouro;
     private int numero;
     private String bairro, cidade, referencia;
 
-    public Entrega(int idEntrega, int idCliente, Calendar data, float valor, String observacao, String logradouro, int numero, String bairro, String cidade, String referencia) {
+    public Entrega(int idEntrega, int idCliente, Calendar data, float valor, int metodoPagamento, float troco, String observacao, String logradouro, int numero, String bairro, String cidade, String referencia) {
         this.idEntrega = idEntrega;
         this.idCliente = idCliente;
         this.data = data;
         this.valor = valor;
+        this.metodoPagamento = metodoPagamento;
+        this.troco = troco;
         this.observacao = observacao;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -26,10 +30,12 @@ public class Entrega {
         this.referencia = referencia;
     }
 
-    public Entrega(int idCliente, Calendar data, float valor, String observacao, String logradouro, int numero, String bairro, String cidade, String referencia) {
+    public Entrega(int idCliente, Calendar data, float valor, int metodoPagamento, float troco, String observacao, String logradouro, int numero, String bairro, String cidade, String referencia) {
         this.idCliente = idCliente;
         this.data = data;
         this.valor = valor;
+        this.metodoPagamento = metodoPagamento;
+        this.troco = troco;
         this.observacao = observacao;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -38,11 +44,13 @@ public class Entrega {
         this.referencia = referencia;
     }
 
-    public Entrega(int idEntrega, int idCliente, Calendar data, float valor, String observacao) {
+    public Entrega(int idEntrega, int idCliente, Calendar data, float valor, int metodoPagamento, float troco, String observacao) {
         this.idEntrega = idEntrega;
         this.idCliente = idCliente;
         this.data = data;
         this.valor = valor;
+        this.metodoPagamento = metodoPagamento;
+        this.troco = troco;
         this.observacao = observacao;
     }
     
@@ -109,6 +117,20 @@ public class Entrega {
         this.idEntrega = idEntrega;
     }
 
-    
+    public int getMetodoPagamento() {
+        return metodoPagamento;
+    }
+
+    public void setMetodoPagamento(int metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
+    }
+
+    public float getTroco() {
+        return troco;
+    }
+
+    public void setTroco(float troco) {
+        this.troco = troco;
+    }
     
 }

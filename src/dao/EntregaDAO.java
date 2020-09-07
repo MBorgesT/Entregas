@@ -28,6 +28,8 @@ public class EntregaDAO {
                     rs.getInt("idCliente"),
                     data,
                     rs.getFloat("valor"),
+                    rs.getInt("metodoPagamento"),
+                    rs.getFloat("troco"),
                     rs.getString("observacao")
             );
         } catch (ParseException ex) {
@@ -40,7 +42,7 @@ public class EntregaDAO {
     public static int insertEntrega(Entrega entrega) {
         try {
             Connection conn = DriverManager.getConnection(DAOPaths.dbPath);
-            String sql = "INSERT INTO entrega(idCliente, data, valor, observacao, logradouro, numero, bairro, cidade, referencia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO entrega(idCliente, data, valor, metodoPagamento, troco, observacao, logradouro, numero, bairro, cidade, referencia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -49,12 +51,14 @@ public class EntregaDAO {
             ps.setInt(1, entrega.getIdCliente());
             ps.setString(2, data);
             ps.setFloat(3, entrega.getValor());
-            ps.setString(4, entrega.getObservacao());
-            ps.setString(5, entrega.getLogradouro());
-            ps.setInt(6, entrega.getNumero());
-            ps.setString(7, entrega.getBairro());
-            ps.setString(8, entrega.getCidade());
-            ps.setString(9, entrega.getReferencia());
+            ps.setInt(4, entrega.getMetodoPagamento());
+            ps.setFloat(5, entrega.getTroco());
+            ps.setString(6, entrega.getObservacao());
+            ps.setString(7, entrega.getLogradouro());
+            ps.setInt(8, entrega.getNumero());
+            ps.setString(9, entrega.getBairro());
+            ps.setString(10, entrega.getCidade());
+            ps.setString(11, entrega.getReferencia());
 
             ps.executeUpdate();
 
